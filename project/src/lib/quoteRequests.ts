@@ -1,4 +1,4 @@
-import { supabase } from '@/lib/supabase';
+import { supabase, isSupabaseConfigured } from '@/lib/supabase';
 import { SERVICE_NAMES } from '@/data/services';
 
 export const PROPERTY_TYPES = ['Residential', 'Commercial'] as const;
@@ -79,6 +79,9 @@ function safeFileName(name: string): string {
 
 export async function submitQuote(values: QuoteFormValues, photo: File | null): Promise<void> {
   if (values.website.trim()) return;
+  if (!isSupabaseConfigured) {
+    throw new Error('Online enquiries are temporarily unavailable. Please call 1800 954 222.');
+  }
 
   let photoPath: string | null = null;
   if (photo) {
