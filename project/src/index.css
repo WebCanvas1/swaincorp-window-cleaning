@@ -1,0 +1,117 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-ivory font-sans text-charcoal antialiased;
+  }
+
+  section[id] {
+    scroll-margin-top: 4.5rem;
+  }
+
+  img {
+    max-width: 100%;
+  }
+}
+
+@layer components {
+  .eyebrow {
+    @apply font-sans text-[0.72rem] font-semibold uppercase tracking-eyebrow text-graphite;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-3 border border-charcoal bg-charcoal px-7 py-4 font-sans text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-ivory transition-all duration-500 hover:bg-transparent hover:text-charcoal focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-3 border border-charcoal bg-transparent px-7 py-4 font-sans text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-charcoal transition-all duration-500 hover:bg-charcoal hover:text-ivory focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold;
+  }
+
+  .btn-light {
+    @apply inline-flex items-center justify-center gap-3 border border-ivory bg-ivory px-7 py-4 font-sans text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-charcoal transition-all duration-500 hover:bg-transparent hover:text-ivory focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold;
+  }
+
+  .btn-ghost-light {
+    @apply inline-flex items-center justify-center gap-3 border border-ivory/60 bg-transparent px-7 py-4 font-sans text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-ivory transition-all duration-500 hover:border-ivory hover:bg-ivory hover:text-charcoal focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold;
+  }
+
+  .nav-link {
+    @apply font-sans text-sm font-medium tracking-wide transition-opacity duration-300 hover:opacity-60;
+  }
+
+  .img-zoom img {
+    @apply transition-transform duration-[1400ms] ease-out;
+  }
+
+  .img-zoom:hover img {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 1000ms cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 1000ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@keyframes scroll-line {
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  50% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+  51% {
+    transform-origin: bottom;
+  }
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+}
+
+.animate-scroll-line {
+  animation: scroll-line 2.4s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .animate-scroll-line,
+  .img-zoom img {
+    animation: none;
+    transition: none;
+  }
+}

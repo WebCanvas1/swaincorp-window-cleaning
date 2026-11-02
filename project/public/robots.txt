@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.brisbanewindowcleaning.com.au/sitemap.xml
